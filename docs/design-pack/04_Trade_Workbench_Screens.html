@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trade Workbench — screen design prototype</title>
+<style>html{color-scheme:light dark}body{margin:0;padding:20px;background:light-dark(#e8edf2,#0b1017);font-family:system-ui}#trade-workbench{max-width:1440px;margin:auto}@media(max-width:600px){body{padding:0}#trade-workbench{border-radius:0}}</style>
+</head>
+<body>
+<div id="trade-workbench">
+  <style>
+    #trade-workbench { color-scheme: light dark; --tw-bg:light-dark(#f5f7f9,#10151c); --tw-panel:light-dark(#ffffff,#171e28); --tw-raised:light-dark(#eef2f6,#1e2835); --tw-line:light-dark(#dce3ea,#2d3949); --tw-text:light-dark(#182434,#e7edf6); --tw-muted:light-dark(#56677b,#a4b2c5); --tw-accent:light-dark(#17675f,#85d4c3); --tw-accent-fill:light-dark(#dff2ec,#193a34); --tw-warn:light-dark(#855210,#f4c782); --tw-warn-fill:light-dark(#fff4df,#3b2d1a); --tw-bad:light-dark(#a13644,#ff9da8); --tw-good:light-dark(#176b50,#89d3b6); background:var(--tw-bg); color:var(--tw-text); font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; border:1px solid var(--tw-line); border-radius:14px; overflow:hidden; width:100%; box-sizing:border-box; }
+    #trade-workbench * { box-sizing:border-box; }
+    #trade-workbench [hidden] { display:none!important; }
+    #trade-workbench h1 { font-size:25px; font-weight:500; line-height:1.2; margin:0 0 6px; letter-spacing:-.6px; }
+    #trade-workbench h2 { font-size:16px; font-weight:500; margin:0 0 12px; }
+    #trade-workbench h3 { font-size:14px; font-weight:500; margin:0 0 9px; }
+    #trade-workbench p { margin:0 0 12px; }
+    #trade-workbench button,#trade-workbench input,#trade-workbench select,#trade-workbench textarea { font:inherit; color:inherit; }
+    #trade-workbench button { padding:8px 12px; border:1px solid var(--tw-line); border-radius:7px; background:var(--tw-panel); text-align:center; }
+    #trade-workbench button:disabled { opacity:.45; }
+    #trade-workbench button:hover:not(:disabled) { background:var(--tw-raised); }
+    #trade-workbench button.tw-primary { background:var(--tw-accent-fill); color:var(--tw-accent); border-color:var(--tw-accent); }
+    #trade-workbench button.tw-link { border:0; padding:0; background:transparent; color:var(--tw-accent); text-align:left; }
+    #trade-workbench button.tw-active { background:var(--tw-raised); color:var(--tw-accent); }
+    #trade-workbench input:not([type=range]):not([type=checkbox]),#trade-workbench select,#trade-workbench textarea { border:1px solid var(--tw-line); border-radius:6px; background:var(--tw-bg); padding:9px 10px; width:100%; min-width:0; }
+    #trade-workbench textarea { resize:vertical; min-height:80px; }
+    #trade-workbench input[type=range] { width:100%; accent-color:var(--tw-accent); }
+    #trade-workbench input[type=checkbox] { accent-color:var(--tw-accent); }
+    #trade-workbench label { display:block; }
+    #trade-workbench .tw-check-label { display:flex; gap:9px; align-items:center; padding:7px 0; }
+    #trade-workbench .tw-small { font-size:12px; }
+    #trade-workbench .tw-muted { color:var(--tw-muted); }
+    #trade-workbench .tw-good { color:var(--tw-good); }
+    #trade-workbench .tw-bad { color:var(--tw-bad); }
+    #trade-workbench .tw-warn { color:var(--tw-warn); }
+    #trade-workbench .tw-number { font-variant-numeric:tabular-nums; }
+    #trade-workbench .tw-flex { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    #trade-workbench .tw-between { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    #trade-workbench .tw-tag { display:inline-block; font-size:12px; padding:3px 8px; border-radius:5px; background:var(--tw-raised); white-space:normal; }
+    #trade-workbench .tw-tag.tw-paper { background:var(--tw-accent-fill); color:var(--tw-accent); }
+    #trade-workbench .tw-tag.tw-attention { background:var(--tw-warn-fill); color:var(--tw-warn); }
+    #trade-workbench .tw-top { padding:15px 18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; border-bottom:1px solid var(--tw-line); background:var(--tw-panel); }
+    #trade-workbench .tw-brand { font-size:17px; font-weight:500; letter-spacing:-.4px; flex:1; min-width:145px; }
+    #trade-workbench .tw-top-meta { font-size:12px; }
+    #trade-workbench .tw-shell { display:grid; grid-template-columns:168px minmax(0,1fr); }
+    #trade-workbench .tw-nav { padding:18px 10px; background:var(--tw-panel); border-right:1px solid var(--tw-line); }
+    #trade-workbench .tw-nav-group { margin:8px 10px; color:var(--tw-muted); font-size:11px; text-transform:uppercase; letter-spacing:1px; }
+    #trade-workbench .tw-nav button { display:block; width:100%; text-align:left; background:transparent; border:0; margin:2px 0; padding:9px 12px; }
+    #trade-workbench .tw-nav button.tw-active { background:var(--tw-raised); }
+    #trade-workbench .tw-nav .tw-mobile-select { display:none; }
+    #trade-workbench main { min-width:0; padding:24px; }
+    #trade-workbench .tw-page-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:22px; }
+    #trade-workbench .tw-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    #trade-workbench .tw-grid-three { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    #trade-workbench .tw-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-bottom:22px; padding-bottom:20px; border-bottom:1px solid var(--tw-line); }
+    #trade-workbench .tw-stat-value { display:block; font-size:25px; font-weight:500; letter-spacing:-.7px; margin:5px 0 2px; }
+    #trade-workbench .tw-panel { padding:18px; border:1px solid var(--tw-line); border-radius:9px; background:var(--tw-panel); min-width:0; }
+    #trade-workbench .tw-section { margin-top:18px; }
+    #trade-workbench .tw-row { padding:12px 0; border-bottom:1px solid var(--tw-line); }
+    #trade-workbench .tw-row:last-child { border-bottom:0; }
+    #trade-workbench .tw-row p { margin:4px 0 0; }
+    #trade-workbench .tw-alert { display:flex; gap:12px; align-items:flex-start; padding:14px; border-radius:8px; background:var(--tw-warn-fill); margin-bottom:18px; }
+    #trade-workbench .tw-alert p { margin:0; }
+    #trade-workbench .tw-field { margin-bottom:14px; }
+    #trade-workbench .tw-field span { display:block; margin-bottom:6px; }
+    #trade-workbench .tw-table-wrap { width:100%; overflow-x:auto; }
+    #trade-workbench table { width:100%; border-collapse:collapse; text-align:left; font-size:12px; }
+    #trade-workbench th { color:var(--tw-muted); font-weight:400; padding:10px 8px; border-bottom:1px solid var(--tw-line); }
+    #trade-workbench td { padding:12px 8px; border-bottom:1px solid var(--tw-line); }
+    #trade-workbench td:first-child,#trade-workbench th:first-child { padding-left:0; }
+    #trade-workbench td:last-child,#trade-workbench th:last-child { padding-right:0; }
+    #trade-workbench tbody tr:last-child td { border-bottom:0; }
+    #trade-workbench .tw-right { text-align:right; font-variant-numeric:tabular-nums; }
+    #trade-workbench .tw-chart { width:100%; display:block; height:220px; }
+    #trade-workbench .tw-chart text { fill:var(--tw-muted); font-size:11px; }
+    #trade-workbench .tw-chart .tw-chart-line { fill:none; stroke:var(--tw-accent); stroke-width:2; }
+    #trade-workbench .tw-chart .tw-chart-grid { stroke:var(--tw-line); stroke-width:1; }
+    #trade-workbench .tw-footer { border-top:1px solid var(--tw-line); padding:10px 18px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; font-size:11px; color:var(--tw-muted); }
+    #trade-workbench .tw-demo { background:var(--tw-raised); color:var(--tw-muted); padding:7px 18px; font-size:11px; }
+    #trade-workbench .tw-rule { padding:10px 12px; border-left:2px solid var(--tw-accent); margin:9px 0; background:var(--tw-raised); }
+    #trade-workbench .tw-code { font:12px/1.6 ui-monospace,monospace; overflow-wrap:anywhere; white-space:pre-wrap; margin:0; }
+    #trade-workbench .tw-message { padding:14px 0; border-bottom:1px solid var(--tw-line); }
+    #trade-workbench .tw-message:last-child { border:0; }
+    #trade-workbench .tw-progress { height:6px; background:var(--tw-raised); border-radius:3px; margin:8px 0; }
+    #trade-workbench .tw-progress-fill { height:100%; background:var(--tw-accent); border-radius:3px; }
+    #trade-workbench #tw-feedback { padding:10px 18px; background:var(--tw-accent-fill); color:var(--tw-accent); font-size:12px; }
+    @media(max-width:800px) { #trade-workbench .tw-shell { grid-template-columns:138px minmax(0,1fr); } #trade-workbench main { padding:18px; } #trade-workbench .tw-grid { grid-template-columns:minmax(0,1fr); } #trade-workbench .tw-stats { gap:12px; } #trade-workbench .tw-stat-value { font-size:22px; } }
+    @media(max-width:600px) { #trade-workbench .tw-shell { display:block; } #trade-workbench .tw-nav { border-right:0; border-bottom:1px solid var(--tw-line); padding:10px 14px; } #trade-workbench .tw-nav .tw-nav-desktop { display:none; } #trade-workbench .tw-nav .tw-mobile-select { display:block; } #trade-workbench .tw-top { gap:10px; padding:14px; } #trade-workbench .tw-top-meta { display:none; } #trade-workbench main { padding:18px 14px; } #trade-workbench h1 { font-size:23px; } #trade-workbench .tw-stats { grid-template-columns:minmax(0,1fr); gap:12px; } #trade-workbench .tw-stats>div { display:grid; grid-template-columns:1fr auto; align-items:center; gap:3px; } #trade-workbench .tw-stats>div .tw-stat-value { margin:0; } #trade-workbench .tw-stats>div .tw-small:last-child { grid-column:1/-1; } #trade-workbench .tw-grid-three { grid-template-columns:minmax(0,1fr); } #trade-workbench .tw-panel { padding:14px; } #trade-workbench input:not([type=range]):not([type=checkbox]),#trade-workbench select,#trade-workbench textarea { font-size:16px; } #trade-workbench button { min-height:42px; } #trade-workbench .tw-footer { font-size:11px; } }
+  </style>
+  <div class="tw-demo">Design preview · all data is synthetic · local paper actions only · no broker connection</div>
+  <header class="tw-top">
+    <div class="tw-brand">Trade Workbench</div>
+    <span class="tw-tag tw-paper">PAPER · example account</span>
+    <div class="tw-top-meta tw-number">USD 10,000<br><span class="tw-muted" id="tw-feed-label">Sample quotes available</span></div>
+    <button type="button" data-action="pause" id="tw-pause" class="cursor-interaction">Pause entries</button>
+  </header>
+  <div id="tw-feedback" role="status" aria-live="polite" hidden></div>
+  <div class="tw-shell">
+    <nav class="tw-nav" aria-label="Trading workspace">
+      <label class="tw-mobile-select">Workspace page
+        <select id="tw-page-select" aria-label="Workspace page">
+          <option value="overview">Overview</option><option value="inbox">Inbox</option><option value="markets">Markets</option><option value="options">Options chain</option><option value="research">Research</option><option value="builder">Trade builder</option><option value="portfolio">Portfolio</option><option value="orders">Orders</option><option value="strategies">Strategies</option><option value="lab">Research Lab</option><option value="risk">Risk Lab</option><option value="journal">Journal</option><option value="assistant">Assistant</option><option value="operations">Operations</option><option value="settings">Settings</option>
+        </select>
+      </label>
+      <div class="tw-nav-desktop">
+        <div class="tw-nav-group">Today</div>
+        <button type="button" class="tw-active cursor-interaction" data-page="overview" aria-current="page">Overview</button>
+        <button type="button" class="cursor-interaction" data-page="inbox">Inbox · <span id="tw-inbox-count">2</span></button>
+        <div class="tw-nav-group">Markets</div>
+        <button type="button" class="cursor-interaction" data-page="markets">Markets</button>
+        <button type="button" class="cursor-interaction" data-page="options">Options chain</button>
+        <button type="button" class="cursor-interaction" data-page="research">Research</button>
+        <div class="tw-nav-group">Trade</div>
+        <button type="button" class="cursor-interaction" data-page="builder">Trade builder</button>
+        <button type="button" class="cursor-interaction" data-page="portfolio">Portfolio</button>
+        <button type="button" class="cursor-interaction" data-page="orders">Orders</button>
+        <div class="tw-nav-group">Automate</div>
+        <button type="button" class="cursor-interaction" data-page="strategies">Strategies</button>
+        <button type="button" class="cursor-interaction" data-page="lab">Research Lab</button>
+        <div class="tw-nav-group">Review</div>
+        <button type="button" class="cursor-interaction" data-page="risk">Risk Lab</button>
+        <button type="button" class="cursor-interaction" data-page="journal">Journal</button>
+        <div class="tw-nav-group">System</div>
+        <button type="button" class="cursor-interaction" data-page="assistant">Assistant</button>
+        <button type="button" class="cursor-interaction" data-page="operations">Operations</button>
+        <button type="button" class="cursor-interaction" data-page="settings">Settings</button>
+      </div>
+    </nav>
+    <main>
+      <section id="tw-overview" data-view="overview" aria-label="Overview">
+        <div class="tw-page-head"><div><h1>Your trading workspace</h1><span class="tw-muted">A clear view of the portfolio, decisions, and next actions.</span></div><span class="tw-tag" id="tw-entry-state">Entries enabled · paper</span></div>
+        <div class="tw-stats">
+          <div><span class="tw-muted tw-small">Net liquidation · example</span><span class="tw-stat-value tw-number">$10,000</span><span class="tw-small">Cash $5,290 · invested net $4,710</span></div>
+          <div><span class="tw-muted tw-small">Open P/L · since entry</span><span class="tw-stat-value tw-number tw-good">+$170</span><span class="tw-small">Marked estimate · before final fees</span></div>
+          <div><span class="tw-muted tw-small">Option expiry risk · sample groups</span><span class="tw-stat-value tw-number" id="tw-risk-used">$640</span><span class="tw-small">$1,000 example ceiling · operational risks separate</span></div>
+        </div>
+        <div class="tw-grid">
+          <div class="tw-panel"><h2>Next to resolve</h2>
+            <div class="tw-row"><div class="tw-between"><span class="tw-tag tw-attention">Review trade</span><span class="tw-small tw-muted">Paper candidate</span></div><p>SPY call debit spread</p><p class="tw-small tw-muted">One spread · $88 loss at expiry including example fees.</p><button type="button" data-page="builder" class="tw-link cursor-interaction">Inspect trade →</button></div>
+            <div class="tw-row"><span class="tw-tag tw-attention">Missing evidence</span><p>AMD earnings date needs verification</p><p class="tw-small tw-muted">New event-exposed entries remain blocked.</p><button type="button" data-page="research" class="tw-link cursor-interaction">Open evidence →</button></div>
+          </div>
+          <div class="tw-panel"><h2>Automation at a glance</h2>
+            <div class="tw-row tw-between"><div>Trend spread<br><span class="tw-small tw-muted">Paper · draft rules v1</span></div><span class="tw-tag tw-paper" id="tw-overview-bot">Scanning</span></div>
+            <div class="tw-row tw-between"><div>Core equity allocation<br><span class="tw-small tw-muted">Shadow · no routing</span></div><span class="tw-tag">Observing</span></div>
+            <div class="tw-row tw-between"><div>Event research<br><span class="tw-small tw-muted">Research only</span></div><span class="tw-tag tw-attention">Coverage review</span></div>
+            <button type="button" data-page="strategies" class="tw-link cursor-interaction">Manage strategies →</button>
+          </div>
+        </div>
+        <div class="tw-panel tw-section"><div class="tw-between"><h2>Portfolio at a glance</h2><button type="button" data-page="portfolio" class="tw-link cursor-interaction">View all positions →</button></div>
+          <div class="tw-table-wrap"><table><thead><tr><th>Holding</th><th>Owner</th><th class="tw-right">Net value</th><th class="tw-right">Open P/L</th></tr></thead><tbody>
+            <tr><td>SPY · 6 shares</td><td>Manual / unassigned</td><td class="tw-right">$3,060</td><td class="tw-right tw-good">+$60</td></tr><tr><td>AMD · 10 shares</td><td>Manual / unassigned</td><td class="tw-right">$1,450</td><td class="tw-right tw-good">+$50</td></tr><tr><td>SPY put credit spread</td><td>Imported sample</td><td class="tw-right">−$100</td><td class="tw-right tw-good">+$20</td></tr><tr><td>QQQ call debit spread</td><td>Imported sample</td><td class="tw-right">$300</td><td class="tw-right tw-good">+$40</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="tw-section tw-between tw-small tw-muted"><span>Prototype state · no active monitoring service</span><button type="button" data-page="operations" class="tw-link cursor-interaction">Inspect operations →</button></div>
+      </section>
+
+      <section id="tw-markets" data-view="markets" aria-label="Markets" hidden>
+        <div class="tw-page-head"><div><h1>Markets</h1><span class="tw-muted">A linked watchlist and research workspace.</span></div><span class="tw-tag">Synthetic quotes</span></div>
+        <div class="tw-grid">
+          <div class="tw-panel"><h2>Focused watchlist</h2><label class="tw-field"><span class="tw-small tw-muted">Filter symbols</span><input id="tw-watch-filter" placeholder="SPY, AMD, QQQ…" aria-label="Filter watchlist"></label>
+            <div class="tw-table-wrap"><table><thead><tr><th>Symbol</th><th class="tw-right">Price</th><th class="tw-right">Change</th></tr></thead><tbody id="tw-watch-rows"><tr data-symbol="SPY"><td><button data-symbol-select="SPY" type="button" class="tw-link cursor-interaction">SPY</button></td><td class="tw-right">$510.00</td><td class="tw-right tw-good">+0.6%</td></tr><tr data-symbol="AMD"><td><button data-symbol-select="AMD" type="button" class="tw-link cursor-interaction">AMD</button></td><td class="tw-right">$145.00</td><td class="tw-right tw-good">+1.1%</td></tr><tr data-symbol="QQQ"><td><button data-symbol-select="QQQ" type="button" class="tw-link cursor-interaction">QQQ</button></td><td class="tw-right">$442.00</td><td class="tw-right tw-bad">−0.2%</td></tr></tbody></table></div>
+          </div>
+          <div class="tw-panel"><div class="tw-between"><h2 id="tw-market-title">SPY · sample daily path</h2><span class="tw-tag">12 observations</span></div><svg class="tw-chart" id="tw-market-chart" role="img" aria-label="Synthetic price chart"></svg><p class="tw-small tw-muted">Illustrative path · these are not historical market observations.</p><div class="tw-flex"><button type="button" data-page="options" class="cursor-interaction">Open SPY chain</button><button type="button" data-page="research" class="cursor-interaction">Research</button></div></div>
+        </div>
+        <div class="tw-panel tw-section"><h2>Saved scan · liquid trend candidates</h2><div class="tw-flex"><span class="tw-tag">Verified event calendar</span><span class="tw-tag">Spread within policy</span><span class="tw-tag">Completed-bar trend</span></div><p class="tw-section tw-muted">AMD is excluded in this example because event coverage is unverified. A missing date does not mean no event.</p></div>
+      </section>
+
+      <section id="tw-options" data-view="options" aria-label="Options chain" hidden>
+        <div class="tw-page-head"><div><h1>Options chain</h1><span class="tw-muted">SPY $510.00 · sample quotes · ordinary 100-multiplier contracts.</span></div><button type="button" data-page="builder" class="tw-primary cursor-interaction">Open trade builder</button></div>
+        <div class="tw-panel"><div class="tw-between"><h2>Nov 20, 2026 · 45 DTE from the sample date</h2><span class="tw-tag">Calls · selected slice</span></div>
+          <div class="tw-table-wrap"><table><thead><tr><th>Strike</th><th class="tw-right">Bid</th><th class="tw-right">Ask</th><th class="tw-right">Delta</th><th class="tw-right">IV</th><th>Build</th></tr></thead><tbody>
+            <tr><td>500</td><td class="tw-right">14.10</td><td class="tw-right">14.30</td><td class="tw-right">0.66</td><td class="tw-right">19.2%</td><td class="tw-muted">Available in production</td></tr><tr><td>505</td><td class="tw-right">10.20</td><td class="tw-right">10.40</td><td class="tw-right">0.59</td><td class="tw-right">18.9%</td><td class="tw-muted">Available in production</td></tr><tr><td>510</td><td class="tw-right">5.75</td><td class="tw-right">5.90</td><td class="tw-right">0.51</td><td class="tw-right">18.6%</td><td><button type="button" data-action="chain-build" class="tw-link cursor-interaction">Buy leg</button></td></tr><tr><td>515</td><td class="tw-right">4.95</td><td class="tw-right">5.05</td><td class="tw-right">0.44</td><td class="tw-right">18.5%</td><td><button type="button" data-action="chain-build" class="tw-link cursor-interaction">Sell leg</button></td></tr><tr><td>520</td><td class="tw-right">3.40</td><td class="tw-right">3.60</td><td class="tw-right">0.38</td><td class="tw-right">18.4%</td><td class="tw-muted">Available in production</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="tw-grid tw-section"><div class="tw-panel"><h2>Contract details</h2><p>American exercise · stock delivery · unadjusted sample</p><p class="tw-small tw-muted">Production uses effective-dated broker metadata. Adjusted deliverables require separate support.</p></div><div class="tw-panel"><h2>Liquidity and data age</h2><p>Every candidate needs synchronized leg quotes.</p><p class="tw-small tw-muted">A midpoint is a reference. Last trade, open interest, and live quote timestamps remain distinct.</p></div></div>
+      </section>
+
+      <section id="tw-builder" data-view="builder" aria-label="Trade builder" hidden>
+        <div class="tw-page-head"><div><h1>Build a trade</h1><span class="tw-muted">SPY call debit vertical · example candidate · paper only.</span></div><span class="tw-tag">No live authority</span></div>
+        <div class="tw-grid">
+          <div class="tw-panel"><h2>Order and management</h2>
+            <div class="tw-row tw-between"><div><span class="tw-tag tw-paper">Buy to open</span><p>SPY · Nov 20 · 510 call</p></div><span class="tw-small">Ratio 1</span></div>
+            <div class="tw-row tw-between"><div><span class="tw-tag">Sell to open</span><p>SPY · Nov 20 · 515 call</p></div><span class="tw-small">Ratio 1</span></div>
+            <div class="tw-grid tw-section"><label class="tw-field"><span class="tw-small tw-muted">Spreads</span><input id="tw-quantity" type="number" min="1" max="20" step="1" value="1" inputmode="numeric"></label><label class="tw-field"><span class="tw-small tw-muted">Net debit per share ($)</span><input id="tw-limit" type="number" min="0.05" max="4.95" step="0.05" value="0.85" inputmode="decimal"></label></div>
+            <div class="tw-between tw-small"><span>Limit combo · Day</span><span>Sample fee: $3 / spread</span></div>
+            <div class="tw-row"><span class="tw-small tw-muted">Management policy</span><p>Close before expiry · time exit at 7 DTE</p><span class="tw-small tw-muted">Software management design; no protective order exists in this preview.</span></div>
+            <div class="tw-row"><span class="tw-small tw-muted">Entry risk budget</span><p>$100 per trade · $1,000 aggregate option ceiling</p></div>
+            <button type="button" id="tw-review-button" data-action="review" class="tw-primary cursor-interaction">Review paper trade</button>
+          </div>
+          <div class="tw-panel"><div class="tw-between"><h2>Economics at expiry</h2><span class="tw-tag">Fees included</span></div>
+            <div class="tw-grid-three"><div><span class="tw-small tw-muted">Max loss*</span><p id="tw-max-loss" class="tw-number">$88</p></div><div><span class="tw-small tw-muted">Max gain*</span><p id="tw-max-gain" class="tw-number">$412</p></div><div><span class="tw-small tw-muted">Break-even</span><p id="tw-breakeven" class="tw-number">$510.88</p></div></div>
+            <svg id="tw-payoff-chart" class="tw-chart" role="img" aria-label="Expiry payoff of the selected sample call spread"></svg>
+            <label class="tw-field"><span class="tw-small tw-between"><span>Underlying at expiry</span><span id="tw-spot-label" class="tw-number">$512</span></span><input type="range" id="tw-expiry-spot" min="500" max="525" step="0.25" value="512" aria-label="Underlying price at expiry"></label>
+            <div class="tw-between"><span class="tw-small">Scenario expiry P/L</span><span id="tw-expiry-pnl" class="tw-number tw-good">+$112</span></div>
+            <p class="tw-small tw-muted tw-section">*For intact ordinary legs and intended settlement. Early assignment, leg changes, outages, and unusual fees can create additional risk. This is an expiry payoff, not a before-expiry forecast.</p>
+          </div>
+        </div>
+        <div class="tw-panel tw-section"><h2>Pre-trade checks</h2><div class="tw-row tw-between"><span>Trade loss including sample fees</span><span id="tw-budget-check" class="tw-good">Pass · $88 ≤ $100</span></div><div class="tw-row tw-between"><span>Quotes and instrument metadata</span><span id="tw-quote-check" class="tw-good">Pass · synthetic snapshot</span></div><div class="tw-row tw-between"><span>Aggregate modeled option risk after trade</span><span id="tw-aggregate-check">$728 / $1,000</span></div><div class="tw-row tw-between"><span>Broker buying-power dry-run</span><span class="tw-tag">Not connected · paper review only</span></div></div>
+      </section>
+
+      <section id="tw-review" data-view="review" aria-label="Paper trade review" hidden>
+        <div class="tw-page-head"><div><h1>Review paper trade</h1><span class="tw-muted">Approve a local simulated order from this exact ticket.</span></div><button type="button" data-page="builder" class="cursor-interaction">Back to ticket</button></div>
+        <div class="tw-alert"><p>No broker request is made. This action creates a local working paper order in the preview.</p></div>
+        <div class="tw-panel"><h2>SPY · 510 / 515 call debit vertical</h2><div class="tw-row tw-between"><span>Account and mode</span><span>Example $10,000 account · PAPER</span></div><div class="tw-row tw-between"><span>Quantity and limit</span><span id="tw-review-summary">1 spread · $0.85 debit</span></div><div class="tw-row tw-between"><span>Modeled expiry loss including sample fees</span><span id="tw-review-risk">$88</span></div><div class="tw-row tw-between"><span>Approved management</span><span>Time exit at 7 DTE · simulated policy</span></div><div class="tw-row tw-between"><span>Broker preflight</span><span>Unavailable · not a live order</span></div><div class="tw-row tw-between"><span>Decision status</span><span id="tw-review-state">Ready for local paper approval</span></div><div class="tw-flex tw-section"><button type="button" data-action="approve" id="tw-approve" class="tw-primary cursor-interaction">Create paper order</button><button type="button" data-page="risk" class="cursor-interaction">Inspect portfolio risk</button></div></div>
+      </section>
+
+      <section id="tw-portfolio" data-view="portfolio" aria-label="Portfolio" hidden>
+        <div class="tw-page-head"><div><h1>Portfolio</h1><span class="tw-muted">Economic groups, broker inventory, and management ownership.</span></div><button type="button" data-page="risk" class="cursor-interaction">Open Risk Lab</button></div>
+        <div class="tw-stats"><div><span class="tw-small tw-muted">Net marked holdings</span><span class="tw-stat-value">$4,710</span><span class="tw-small">Plus $5,290 cash</span></div><div><span class="tw-small tw-muted">Unassigned equities</span><span class="tw-stat-value">2</span><span class="tw-small">Counted in portfolio risk</span></div><div><span class="tw-small tw-muted">Open option groups</span><span class="tw-stat-value">2</span><span class="tw-small">Expiry mechanics tracked per contract</span></div></div>
+        <div class="tw-panel"><div class="tw-table-wrap"><table><thead><tr><th>Position</th><th class="tw-right">Quantity</th><th class="tw-right">Net value</th><th class="tw-right">Open P/L</th><th>Manage</th></tr></thead><tbody><tr><td>SPY shares<br><span class="tw-muted">Unassigned · $500 entry</span></td><td class="tw-right">6</td><td class="tw-right">$3,060</td><td class="tw-right tw-good">+$60</td><td><button type="button" data-action="inspect-position" class="tw-link cursor-interaction">Inspect</button></td></tr><tr><td>AMD shares<br><span class="tw-muted">Unassigned · $140 entry</span></td><td class="tw-right">10</td><td class="tw-right">$1,450</td><td class="tw-right tw-good">+$50</td><td><button type="button" data-page="research" class="tw-link cursor-interaction">Event review</button></td></tr><tr><td>SPY 485 / 490 put credit<br><span class="tw-muted">Entry credit $120 · liability $100</span></td><td class="tw-right">1</td><td class="tw-right">−$100</td><td class="tw-right tw-good">+$20</td><td><button type="button" data-page="risk" class="tw-link cursor-interaction">Risk</button></td></tr><tr><td>QQQ 440 / 445 call debit<br><span class="tw-muted">Entry debit $260 · marked $300</span></td><td class="tw-right">1</td><td class="tw-right">$300</td><td class="tw-right tw-good">+$40</td><td><button type="button" data-page="orders" class="tw-link cursor-interaction">Orders</button></td></tr></tbody></table></div></div>
+        <div class="tw-panel tw-section" id="tw-position-inspector" hidden><div class="tw-between"><h2>SPY · unassigned equity holding</h2><button type="button" data-action="close-inspector" class="cursor-interaction">Close detail</button></div><p>6 shares · current sample $510 · entry sample $500 · open marked P/L +$60.</p><p class="tw-small tw-muted">No strategy owns this holding. Importing it requires an explicit management policy. Global risk includes it immediately.</p><div class="tw-flex"><button type="button" data-page="risk" class="cursor-interaction">Simulate risk</button><button type="button" data-page="journal" class="cursor-interaction">Open journal</button></div></div>
+      </section>
+
+      <section id="tw-risk" data-view="risk" aria-label="Risk Lab" hidden>
+        <div class="tw-page-head"><div><h1>Risk Lab</h1><span class="tw-muted">Inspect a hypothetical portfolio change before acting.</span></div><span class="tw-tag">Illustrative approximation</span></div>
+        <div class="tw-grid"><div class="tw-panel"><h2>Scenario assumptions</h2><label class="tw-field"><span class="tw-between tw-small"><span>Broad price move</span><span id="tw-shock-label">−5%</span></span><input id="tw-shock" type="range" min="-20" max="20" step="1" value="-5" aria-label="Broad price move percent"></label><label class="tw-field"><span class="tw-between tw-small"><span>IV change</span><span id="tw-vol-label">+10 percentage points</span></span><input id="tw-vol" type="range" min="-15" max="30" step="1" value="10" aria-label="Volatility change percentage points"></label><label class="tw-field"><span class="tw-between tw-small"><span>Days forward</span><span id="tw-days-label">5 days</span></span><input id="tw-days" type="range" min="0" max="30" step="1" value="5" aria-label="Days forward"></label><p class="tw-small tw-muted">Sample sensitivities: dollar delta $6,500; dollar gamma $17,000; vega −$5 / IV point; theta −$0.75 / day. Large shocks need nonlinear repricing in production.</p></div><div class="tw-panel"><h2>Hypothetical portfolio impact</h2><span class="tw-stat-value tw-number" id="tw-scenario-pnl">−$357.50</span><p class="tw-muted tw-small" id="tw-scenario-return">−3.58% of sample $10,000 net liquidation</p><div class="tw-row tw-between"><span>Price / gamma contribution</span><span id="tw-price-contribution">−$303.75</span></div><div class="tw-row tw-between"><span>Volatility contribution</span><span id="tw-vol-contribution">−$50.00</span></div><div class="tw-row tw-between"><span>Time contribution</span><span id="tw-time-contribution">−$3.75</span></div><p class="tw-section tw-small tw-muted">Approximation, not a forecast, broker margin result, or maximum possible loss. No portfolio positions are changed.</p></div></div>
+        <div class="tw-panel tw-section"><h2>Policy limits and obligations</h2><div class="tw-row tw-between"><span>New automated trade budget</span><span>$100 including estimated costs</span></div><div class="tw-row tw-between"><span>Example aggregate option expiry-risk ceiling</span><span id="tw-risk-policy-used">$640 / $1,000</span></div><div class="tw-row tw-between"><span>Cash reserve</span><span>$5,290 / $3,000 minimum</span></div><div class="tw-row tw-between"><span>Uncovered options / 0DTE</span><span class="tw-tag">Disabled</span></div><div class="tw-row tw-between"><span>Assignment funding / broker margin</span><span class="tw-tag tw-attention">Production calculation required</span></div></div>
+      </section>
+
+      <section id="tw-strategies" data-view="strategies" aria-label="Strategies" hidden>
+        <div class="tw-page-head"><div><h1>Strategies</h1><span class="tw-muted">Versioned rules, bounded budgets, and visible decisions.</span></div><button type="button" data-page="editor" class="tw-primary cursor-interaction">Inspect rule editor</button></div>
+        <div class="tw-panel"><h2>Trend spread · sample draft v1</h2><div class="tw-between"><div class="tw-flex"><span class="tw-tag tw-paper">Paper</span><span class="tw-tag" id="tw-strategy-state">Scanning</span></div><button type="button" data-action="pause" class="cursor-interaction">Toggle entry pause</button></div><div class="tw-row"><p>One proposed trade · $88 modeled risk</p><span class="tw-small tw-muted">Last decision: eligible sample candidate. Broker preflight is unavailable.</span></div><div class="tw-between tw-small"><span>Authorized paper budget</span><span>$0 / $500 before preview order</span></div><div class="tw-progress" role="progressbar" aria-label="Sample strategy budget used" aria-valuenow="0" aria-valuemin="0" aria-valuemax="500"><div class="tw-progress-fill" id="tw-strategy-budget-bar" style="width:0%"></div></div><div class="tw-flex"><button type="button" data-page="builder" class="cursor-interaction">Review candidate</button><button type="button" data-page="lab" class="cursor-interaction">Research evidence</button><button type="button" data-page="editor" class="cursor-interaction">Edit draft</button></div></div>
+        <div class="tw-panel tw-section"><h2>Core equity allocation · sample v1</h2><div class="tw-flex"><span class="tw-tag">Shadow</span><span class="tw-tag">No routing authority</span></div><p class="tw-section tw-muted">Observes the real-account model in production; this preview uses synthetic holdings. Existing manual positions require an ownership decision.</p></div>
+      </section>
+
+      <section id="tw-editor" data-view="editor" aria-label="Strategy editor" hidden>
+        <div class="tw-page-head"><div><h1>Strategy rules</h1><span class="tw-muted">Editing creates a new draft; it never changes a running version.</span></div><button type="button" data-page="strategies" class="cursor-interaction">Back to strategies</button></div>
+        <div class="tw-grid"><div class="tw-panel"><h2>Entry recipe</h2><div class="tw-rule">All inputs verified<br><span class="tw-small tw-muted">Unknown → block entry</span></div><div class="tw-rule">Completed-bar SMA 20 &gt; SMA 100</div><div class="tw-rule">No conflicting SPY position</div><div class="tw-rule">Verified event calendar</div><div class="tw-rule">30–60 DTE call debit vertical</div><p class="tw-small tw-muted tw-section">A live run against the displayed portfolio would flag existing SPY exposure. The sample candidate is a sizing demonstration.</p></div><div class="tw-panel"><h2>Draft sizing policy</h2><label class="tw-field"><span class="tw-small tw-muted">Per-trade modeled loss ceiling ($)</span><input id="tw-draft-risk" type="number" min="25" max="1000" step="25" value="100"></label><label class="tw-field"><span class="tw-small tw-muted">Maximum holding window (days)</span><input id="tw-draft-hold" type="number" min="1" max="90" step="1" value="30"></label><p class="tw-small tw-muted">Changes here apply to a local draft only. They do not change the trade builder's policy.</p><button type="button" data-action="validate-draft" class="tw-primary cursor-interaction">Validate local draft</button><p class="tw-section tw-small" id="tw-draft-result" aria-live="polite">Draft v1 · not approved for live trading</p></div></div>
+      </section>
+
+      <section id="tw-lab" data-view="lab" aria-label="Research Lab" hidden>
+        <div class="tw-page-head"><div><h1>Research Lab</h1><span class="tw-muted">Reproducible experiments, cost assumptions, and decision replay.</span></div><span class="tw-tag">Synthetic demonstration</span></div>
+        <div class="tw-panel"><div class="tw-between"><h2>Sample experiment · 12 observations</h2><span class="tw-tag">No historical run performed</span></div><svg id="tw-equity-chart" class="tw-chart" role="img" aria-label="Synthetic demonstration of an experiment equity curve"></svg><div class="tw-grid-three"><div><span class="tw-small tw-muted">Example net change</span><p class="tw-number">+4.6%</p></div><div><span class="tw-small tw-muted">Example cost drag</span><p class="tw-number">$120</p></div><div><span class="tw-small tw-muted">Promotion status</span><p>Evidence required</p></div></div></div>
+        <div class="tw-panel tw-section"><h2>Replay a decision</h2><label class="tw-field"><span class="tw-small tw-between"><span>Decision event</span><span id="tw-replay-label">1 / 5</span></span><input id="tw-replay" type="range" min="0" max="4" step="1" value="0" aria-label="Decision replay event"></label><p id="tw-replay-content">Snapshot captured · instrument and quote quality evaluated.</p><p class="tw-small tw-muted">Production replay restores the exact dataset, policy, account state, and then-available evidence.</p></div>
+      </section>
+
+      <section id="tw-orders" data-view="orders" aria-label="Orders" hidden>
+        <div class="tw-page-head"><div><h1>Orders</h1><span class="tw-muted">Request state, verified fills, and unresolved outcomes.</span></div><button type="button" data-page="builder" class="tw-primary cursor-interaction">Prepare paper order</button></div>
+        <div class="tw-panel"><div class="tw-table-wrap"><table><thead><tr><th>Intent</th><th>Trade</th><th>Status</th><th class="tw-right">Risk reserve</th><th>Action</th></tr></thead><tbody id="tw-order-rows"><tr id="tw-orders-empty"><td colspan="5" class="tw-muted">No local orders yet. Create one through the paper review flow.</td></tr></tbody></table></div></div>
+        <div class="tw-panel tw-section"><h2>Execution evidence</h2><div class="tw-row">Proposal → checks → immutable review → local paper command</div><div class="tw-row tw-muted">Production continues: broker dry-run → submit → acknowledgment or unknown → fills → reconciliation → management.</div><p class="tw-small tw-muted tw-section">Cancel requested is distinct from cancelled. Unknown broker outcomes preserve capacity and require reconciliation.</p></div>
+      </section>
+
+      <section id="tw-inbox" data-view="inbox" aria-label="Inbox" hidden>
+        <div class="tw-page-head"><div><h1>Action inbox</h1><span class="tw-muted">Prioritized decisions with ownership, evidence, and deadlines.</span></div><span class="tw-tag">Local preview</span></div>
+        <div class="tw-panel"><div class="tw-row"><div class="tw-between"><h2>SPY candidate needs review</h2><span class="tw-tag tw-attention">Approval</span></div><p class="tw-muted">Inspect the exact price, quantity, expiry economics and management plan.</p><div class="tw-flex"><button type="button" data-page="builder" class="tw-primary cursor-interaction">Inspect candidate</button><button type="button" data-action="ack" data-incident="candidate" class="cursor-interaction">Acknowledge</button><span class="tw-small" id="tw-ack-candidate">New</span></div></div><div class="tw-row"><div class="tw-between"><h2>AMD event coverage is incomplete</h2><span class="tw-tag tw-attention">Data quality</span></div><p class="tw-muted">New event-exposed entries are blocked until the date is verified.</p><div class="tw-flex"><button type="button" data-page="research" class="cursor-interaction">Open evidence</button><button type="button" data-action="ack" data-incident="calendar" class="cursor-interaction">Acknowledge</button><span class="tw-small" id="tw-ack-calendar">New</span></div></div></div>
+        <p class="tw-section tw-small tw-muted">Acknowledgment does not resolve the missing evidence or execute a trade.</p>
+      </section>
+
+      <section id="tw-research" data-view="research" aria-label="Research" hidden>
+        <div class="tw-page-head"><div><h1>Research and evidence</h1><span class="tw-muted">Keep verified facts, hypotheses, and missing inputs separate.</span></div><span class="tw-tag">Illustrative evidence</span></div>
+        <div class="tw-alert"><p>AMD earnings date is unverified in this preview. There is no claim about its actual next earnings date.</p></div>
+        <div class="tw-grid"><div class="tw-panel"><h2>Thesis workspace</h2><p>Draft hypothesis: a verified trend could justify comparing a limited-premium spread with direct stock exposure.</p><div class="tw-row"><span class="tw-small tw-muted">Invalidation</span><p>Trend fails, event risk changes, or portfolio exposure exceeds policy.</p></div><div class="tw-row"><span class="tw-small tw-muted">Unknowns</span><p>Forward returns, event date, executable price, and historical evidence.</p></div></div><div class="tw-panel"><h2>Required source evidence</h2><div class="tw-row">SEC filing or issuer release<span class="tw-small tw-muted"> · publication time</span></div><div class="tw-row">Licensed news and event calendar<span class="tw-small tw-muted"> · available-at time</span></div><div class="tw-row">Quote and contract snapshot<span class="tw-small tw-muted"> · calculation version</span></div><button type="button" data-page="assistant" class="tw-link cursor-interaction">Explore assistant workflow →</button></div></div>
+      </section>
+
+      <section id="tw-journal" data-view="journal" aria-label="Journal" hidden>
+        <div class="tw-page-head"><div><h1>Trade journal</h1><span class="tw-muted">Decision quality, execution, costs, and changes to the thesis.</span></div><span class="tw-tag">Synthetic entries</span></div>
+        <div class="tw-panel"><h2>SPY put credit spread · imported sample</h2><div class="tw-grid-three"><div><span class="tw-small tw-muted">Entry credit</span><p>$120</p></div><div><span class="tw-small tw-muted">Current liability</span><p>$100</p></div><div><span class="tw-small tw-muted">Marked open P/L</span><p class="tw-good">+$20</p></div></div><p class="tw-muted">Outcome remains open. Assignment and future exit cost are not erased by collected premium.</p><div class="tw-row"><span class="tw-small tw-muted">Original evidence</span><p>Imported demonstration · no actual execution records.</p></div><label class="tw-field"><span class="tw-small tw-muted">Add a local review note</span><textarea id="tw-journal-note" placeholder="What changed? What would you test next?" aria-label="Journal review note"></textarea></label><button type="button" data-action="note" class="cursor-interaction">Append local note</button><div id="tw-journal-notes" class="tw-section" aria-live="polite"></div></div>
+      </section>
+
+      <section id="tw-assistant" data-view="assistant" aria-label="Assistant" hidden>
+        <div class="tw-page-head"><div><h1>Portfolio assistant</h1><span class="tw-muted">Grounded tools, clear uncertainty, and draft decisions.</span></div><span class="tw-tag">Scripted responses · no API call</span></div>
+        <div class="tw-panel"><div class="tw-flex"><button type="button" data-question="risk" class="cursor-interaction">Explain my risk</button><button type="button" data-question="sizing" class="cursor-interaction">Why is sizing blocked?</button><button type="button" data-question="outage" class="cursor-interaction">What if the AI is down?</button></div><div id="tw-chat" class="tw-section" aria-live="polite"><div class="tw-message"><span class="tw-small tw-muted">Example assistant · synthetic context</span><p>I can explain the account, compare trade structures, and draft rules. Deterministic risk and execution services decide whether a proposal is allowed.</p></div></div><label class="tw-field tw-section"><span class="tw-small tw-muted">Explore the proposed conversation interface</span><input id="tw-question" placeholder="Ask about risk, sizing, or recovery…" aria-label="Example assistant question"></label><button type="button" data-action="ask" class="tw-primary cursor-interaction">Show example response</button></div>
+      </section>
+
+      <section id="tw-operations" data-view="operations" aria-label="Operations" hidden>
+        <div class="tw-page-head"><div><h1>Operations</h1><span class="tw-muted">Independent feed, account, writer, and reconciliation health.</span></div><button type="button" data-action="disconnect" id="tw-disconnect" class="cursor-interaction">Simulate quote disconnect</button></div>
+        <div class="tw-panel"><h2>Preview services</h2><div class="tw-row tw-between"><span>Quote feed simulation</span><span id="tw-ops-feed" class="tw-good">Sample data available</span></div><div class="tw-row tw-between"><span>Account streamer</span><span class="tw-tag">Not connected</span></div><div class="tw-row tw-between"><span>Broker writer</span><span class="tw-tag">Not deployed</span></div><div class="tw-row tw-between"><span>OpenAI service</span><span class="tw-tag">Not connected</span></div><div class="tw-row tw-between"><span>Local entry state</span><span id="tw-ops-entries">Enabled · paper only</span></div><div class="tw-row tw-between"><span>Persistent monitoring / notifications</span><span class="tw-tag">Not deployed</span></div></div>
+        <div class="tw-panel tw-section"><h2>Recovery policy</h2><p>Pause new risk → retain unknown-order capacity → restore data → reconcile account and in-flight commands → review resumption.</p><p class="tw-small tw-muted">Restoring a connection does not blindly replay order commands. A paused entry engine does not cancel protective exits.</p></div>
+      </section>
+
+      <section id="tw-settings" data-view="settings" aria-label="Settings" hidden>
+        <div class="tw-page-head"><div><h1>Settings</h1><span class="tw-muted">Accounts, policies, data rights, model budgets, and notifications.</span></div><span class="tw-tag">Preview preferences</span></div>
+        <div class="tw-grid"><div class="tw-panel"><h2>Account access</h2><div class="tw-row tw-between"><span>Broker connection</span><span>Not configured</span></div><div class="tw-row tw-between"><span>Live permission</span><span>Disabled</span></div><div class="tw-row tw-between"><span>Account type / intraday rule regime</span><span>Verify during setup</span></div><p class="tw-section tw-small tw-muted">Production OAuth secrets are stored server-side. Personal applications and multi-user broker authorization have different requirements.</p><button type="button" disabled>Broker setup unavailable in preview</button></div><div class="tw-panel"><h2>Notification preferences</h2><label class="tw-check-label"><input type="checkbox" checked> In-app action inbox</label><label class="tw-check-label"><input type="checkbox"> Mobile risk alerts</label><label class="tw-check-label"><input type="checkbox"> Daily email briefing</label><label class="tw-check-label"><input type="checkbox" checked> Hide balances on lock screen</label><p class="tw-section tw-small tw-muted">Local choices only. No messages are sent.</p></div></div>
+        <div class="tw-panel tw-section"><h2>AI and data budget</h2><div class="tw-grid"><label class="tw-field"><span class="tw-small tw-muted">Monthly inference budget ($)</span><input type="number" min="0" value="20" aria-label="Monthly inference budget"></label><label class="tw-field"><span class="tw-small tw-muted">Research profile</span><select aria-label="Research cost profile"><option>Focused universe</option><option>Broader licensed data</option></select></label></div><p class="tw-small tw-muted">Costs remain visible alongside strategy returns. A depleted AI budget pauses dependent entries while deterministic managers continue in the proposed production system.</p></div>
+      </section>
+    </main>
+  </div>
+  <footer class="tw-footer"><span>Sample date Oct 6, 2026 · exchange time America/New_York</span><span>Inspect → simulate → review → authorized execution</span></footer>
+  <script>
+    (() => {
+      const root = document.getElementById('trade-workbench');
+      const $ = s => root.querySelector(s);
+      const $$ = s => [...root.querySelectorAll(s)];
+      const state = {page:'overview',paused:false,connected:true,submitted:false,orders:[],symbol:'SPY',review:null};
+      const money = (n, cents=false) => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:cents?2:0,maximumFractionDigits:cents?2:0}).format(Math.abs(n));
+      const signed = (n,cents=false) => (n<0?'−':n>0?'+':'')+money(n,cents);
+      const say = msg => { $('#tw-feedback').textContent=msg; $('#tw-feedback').hidden=false; };
+      function orderRisk(){return state.orders.filter(o=>o.status!=='Cancelled').reduce((a,o)=>a+o.risk,0);}
+      function ticket(){
+        const quantity=Number($('#tw-quantity').value), limit=Number($('#tw-limit').value), spot=Number($('#tw-expiry-spot').value);
+        const valid=Number.isInteger(quantity)&&quantity>=1&&quantity<=20&&Number.isFinite(limit)&&limit>=.05&&limit<=4.95&&Math.abs(limit/.05-Math.round(limit/.05))<1e-6;
+        const risk=quantity*(limit*100+3), gain=quantity*((5-limit)*100-3), aggregate=640+orderRisk()+risk;
+        return {quantity,limit,spot,risk,gain,aggregate,valid,allowed:valid&&risk<=100&&aggregate<=1000&&state.connected&&!state.paused};
+      }
+      function updateTicket(){
+        const t=ticket();
+        $('#tw-max-loss').textContent=t.valid?money(t.risk):'Invalid ticket';
+        $('#tw-max-gain').textContent=t.valid?money(t.gain):'—';
+        $('#tw-breakeven').textContent=t.valid?money(510+t.limit+.03,true):'—';
+        $('#tw-spot-label').textContent=money(t.spot,true);
+        const pnl=t.quantity*(Math.min(Math.max(t.spot-510,0),5)*100-t.limit*100-3);
+        $('#tw-expiry-pnl').textContent=t.valid?signed(pnl,true):'—';
+        $('#tw-expiry-pnl').className='tw-number '+(pnl<0?'tw-bad':'tw-good');
+        const b=$('#tw-budget-check');
+        b.textContent=!t.valid?'Blocked · invalid quantity, tick or price':t.risk<=100?'Pass · '+money(t.risk)+' ≤ $100':'Blocked · '+money(t.risk)+' exceeds $100';
+        b.className=t.valid&&t.risk<=100?'tw-good':'tw-bad';
+        const q=$('#tw-quote-check');q.textContent=state.connected?'Pass · synthetic snapshot':'Blocked · sample feed disconnected';q.className=state.connected?'tw-good':'tw-bad';
+        $('#tw-aggregate-check').textContent=t.valid?money(t.aggregate)+' / $1,000':'—';
+        $('#tw-review-button').disabled=!t.allowed;
+        $('#tw-approve').disabled=!t.allowed||state.submitted||!state.review;
+        $('#tw-risk-used').textContent=money(640+orderRisk());
+        $('#tw-risk-policy-used').textContent=money(640+orderRisk())+' / $1,000';
+        const bar=$('#tw-strategy-budget-bar');bar.style.width=Math.min(100,orderRisk()/500*100)+'%';bar.parentElement.setAttribute('aria-valuenow',String(orderRisk()));
+        if(state.page==='builder') drawPayoff();
+      }
+      function mode(){
+        $('#tw-pause').textContent=state.paused?'Resume paper entries':'Pause entries';
+        $('#tw-entry-state').textContent=state.paused?'Entries paused · management separate':'Entries enabled · paper';
+        $('#tw-overview-bot').textContent=state.paused?'Entries paused':'Scanning';
+        $('#tw-strategy-state').textContent=state.paused?'Entries paused':'Scanning';
+        $('#tw-ops-entries').textContent=state.paused?'Paused · paper only':'Enabled · paper only';
+        $('#tw-feed-label').textContent=state.connected?'Sample quotes available':'Sample feed disconnected';
+        $('#tw-ops-feed').textContent=state.connected?'Sample data available':'Disconnected · entries paused';
+        $('#tw-ops-feed').className=state.connected?'tw-good':'tw-bad';
+        $('#tw-disconnect').textContent=state.connected?'Simulate quote disconnect':'Restore sample feed';
+        updateTicket();
+      }
+      function show(page){
+        if(!$('#tw-'+page)||!$('#tw-'+page).hasAttribute('data-view'))return;
+        state.page=page;
+        $$('[data-view]').forEach(e=>e.hidden=e.dataset.view!==page);
+        $$('.tw-nav-desktop [data-page]').forEach(e=>{e.classList.toggle('tw-active',e.dataset.page===page);if(e.dataset.page===page)e.setAttribute('aria-current','page');else e.removeAttribute('aria-current');});
+        if([...$('#tw-page-select').options].some(o=>o.value===page))$('#tw-page-select').value=page;
+        if(page==='builder')drawPayoff();if(page==='markets')drawMarket();if(page==='lab')drawEquity();
+      }
+      const NS='http://www.w3.org/2000/svg';
+      function svgNode(tag,attrs,text){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,String(v)));if(text!==undefined)e.textContent=text;return e;}
+      function chartBase(svg,title){
+        const w=svg.getBoundingClientRect().width;if(w<10)return null;
+        svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${w} 220`);svg.append(svgNode('title',{},title));return {w,h:220,l:60,r:15,t:30,b:42};
+      }
+      function drawPayoff(){
+        const svg=$('#tw-payoff-chart'), c=chartBase(svg,'Expiry payoff of a synthetic SPY 510/515 call spread including example fees');if(!c)return;
+        const t=ticket();if(!t.valid)return;
+        const lo=-t.risk-Math.max(10,t.quantity*20),hi=t.gain+Math.max(10,t.quantity*20);
+        const x=v=>c.l+(v-500)/25*(c.w-c.l-c.r),y=v=>c.t+(hi-v)/(hi-lo)*(c.h-c.t-c.b);
+        svg.append(svgNode('text',{x:6,y:14},'Expiry P/L ($)'));
+        [-t.risk,0,t.gain].forEach(v=>{svg.append(svgNode('line',{x1:c.l,x2:c.w-c.r,y1:y(v),y2:y(v),class:'tw-chart-grid'}));svg.append(svgNode('text',{x:c.l-8,y:y(v)+4,'text-anchor':'end'},Math.round(v).toLocaleString('en-US')));});
+        [500,510,525].forEach(v=>svg.append(svgNode('text',{x:x(v),y:c.h-21,'text-anchor':'middle'},String(v))));
+        svg.append(svgNode('text',{x:(c.l+c.w-c.r)/2,y:217,'text-anchor':'middle'},'Underlying at expiry ($)'));
+        const points=Array.from({length:51},(_,i)=>{const s=500+i*.5,p=t.quantity*(Math.min(Math.max(s-510,0),5)*100-t.limit*100-3);return `${i?'L':'M'}${x(s).toFixed(2)},${y(p).toFixed(2)}`;}).join(' ');
+        svg.append(svgNode('path',{d:points,class:'tw-chart-line'}));
+        const p=t.quantity*(Math.min(Math.max(t.spot-510,0),5)*100-t.limit*100-3);
+        svg.append(svgNode('line',{x1:x(t.spot),x2:x(t.spot),y1:c.t,y2:c.h-c.b,class:'tw-chart-grid'}));
+        svg.append(svgNode('circle',{cx:x(t.spot),cy:y(p),r:4,fill:'var(--tw-accent)'}));
+      }
+      function lineChart(svg,values,title,axisLabel){
+        const c=chartBase(svg,title);if(!c)return;const min=Math.min(...values),max=Math.max(...values),pad=Math.max((max-min)*.12,1);
+        const x=i=>c.l+i/(values.length-1)*(c.w-c.l-c.r),y=v=>c.t+(max+pad-v)/(max-min+pad*2)*(c.h-c.t-c.b);
+        svg.append(svgNode('text',{x:6,y:14},axisLabel));
+        [min,(min+max)/2,max].forEach(v=>{svg.append(svgNode('line',{x1:c.l,x2:c.w-c.r,y1:y(v),y2:y(v),class:'tw-chart-grid'}));svg.append(svgNode('text',{x:c.l-8,y:y(v)+4,'text-anchor':'end'},Math.round(v).toLocaleString('en-US')));});
+        svg.append(svgNode('path',{d:values.map((v,i)=>`${i?'L':'M'}${x(i)},${y(v)}`).join(' '),class:'tw-chart-line'}));
+        [0,5,11].forEach(i=>svg.append(svgNode('text',{x:x(i),y:c.h-20,'text-anchor':'middle'},String(i+1))));svg.append(svgNode('text',{x:(c.l+c.w-c.r)/2,y:217,'text-anchor':'middle'},'Synthetic observation'));
+      }
+      function drawMarket(){const paths={SPY:[500,501,503,501,502,506,505,506,507,508,507,510],AMD:[137,138,140,139,138,142,141,142,143,144,142,145],QQQ:[436,437,439,438,440,443,442,441,443,444,443,442]};lineChart($('#tw-market-chart'),paths[state.symbol],state.symbol+' synthetic price path','Price ($)');}
+      function drawEquity(){lineChart($('#tw-equity-chart'),[10000,10015,10120,10080,10170,10300,10170,10350,10400,10250,10500,10460],'Synthetic example experiment curve, not measured performance','Equity ($)');}
+      function scenario(){
+        const shock=Number($('#tw-shock').value),vol=Number($('#tw-vol').value),days=Number($('#tw-days').value);
+        const price=6500*shock/100+.5*17000*(shock/100)**2, vc=-5*vol,tc=-.75*days,pnl=price+vc+tc;
+        $('#tw-shock-label').textContent=(shock>0?'+':'')+shock+'%';$('#tw-vol-label').textContent=(vol>0?'+':'')+vol+' percentage points';$('#tw-days-label').textContent=days+' days';
+        $('#tw-scenario-pnl').textContent=signed(pnl,true);$('#tw-scenario-pnl').className='tw-stat-value tw-number '+(pnl<0?'tw-bad':'tw-good');
+        $('#tw-scenario-return').textContent=(pnl>0?'+':'')+(pnl/100).toFixed(2)+'% of sample $10,000 net liquidation';$('#tw-price-contribution').textContent=signed(price,true);$('#tw-vol-contribution').textContent=signed(vc,true);$('#tw-time-contribution').textContent=signed(tc,true);
+      }
+      function renderOrders(){
+        const body=$('#tw-order-rows');body.replaceChildren();
+        if(!state.orders.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=5;td.textContent='No local orders yet. Create one through the paper review flow.';td.className='tw-muted';tr.append(td);body.append(tr);return;}
+        state.orders.forEach(o=>{const tr=document.createElement('tr');[o.id,`${o.quantity} SPY 510/515 · $${o.limit.toFixed(2)} debit`,o.status+' · local paper',money(o.status==='Cancelled'?0:o.risk)].forEach((v,i)=>{const td=document.createElement('td');td.textContent=v;if(i===3)td.className='tw-right';tr.append(td);});const td=document.createElement('td'),button=document.createElement('button');button.type='button';button.textContent=o.status==='Cancelled'?'Cancelled':'Cancel locally';button.className='tw-link cursor-interaction';button.disabled=o.status==='Cancelled';button.dataset.cancelId=o.id;td.append(button);tr.append(td);body.append(tr);});
+      }
+      function chat(question){
+        const answers={risk:'The sample portfolio includes $4,510 of equities, a $100 spread liability, a $300 debit-spread asset, and $5,290 cash. Its existing option expiry loss is $640 before further operational costs. Equity downside and assignment obligations require additional portfolio scenarios.',sizing:'With a $100 per-trade budget, one sample spread at $0.85 debit plus $3 fees uses $88. Two use $176 and are blocked. A standard $5-wide credit spread collecting $1.20 risks $380 before fees and would not fit this budget.',outage:'The proposed deterministic manager keeps running when OpenAI is unavailable. New AI-dependent entries pause. A quote or account-state failure is handled separately; an ambiguous broker order retains its risk reservation until reconciled.'};
+        const message=document.createElement('div');message.className='tw-message';const label=document.createElement('span');label.className='tw-small tw-muted';label.textContent='Scripted example · '+question;const p=document.createElement('p');p.textContent=answers[question]||'This preview has no model connection. In production, the assistant would retrieve account-scoped evidence and quant results before responding. Choose a risk, sizing, or outage example to inspect the intended behavior.';message.append(label,p);$('#tw-chat').append(message);
+      }
+      root.addEventListener('click',e=>{
+        const b=e.target.closest('button');if(!b||b.disabled)return;
+        if(b.dataset.page){show(b.dataset.page);return;}
+        if(b.dataset.symbolSelect){state.symbol=b.dataset.symbolSelect;$('#tw-market-title').textContent=state.symbol+' · sample daily path';drawMarket();return;}
+        if(b.dataset.question){chat(b.dataset.question);return;}
+        if(b.dataset.cancelId){const o=state.orders.find(o=>o.id===b.dataset.cancelId);if(o){o.status='Cancelled';renderOrders();updateTicket();say('Local paper order cancelled. This does not send a broker request.');}return;}
+        const action=b.dataset.action;
+        if(action==='pause'){if(state.paused&&!state.connected){say('Restore and review the sample feed before resuming paper entries.');return;}state.paused=!state.paused;mode();say(state.paused?'Paper entries paused. Position management is a separate control.':'Paper entries resumed in the local preview.');}
+        if(action==='disconnect'){state.connected=!state.connected;if(!state.connected)state.paused=true;mode();say(state.connected?'Sample feed restored. Paper entries remain paused until explicitly resumed.':'Sample quote feed disconnected. New paper entries are blocked.');}
+        if(action==='chain-build'){show('builder');say('Loaded the sample SPY 510/515 vertical. Inspect quantity, debit, and policy checks.');}
+        if(action==='review'){const t=ticket();if(!t.allowed)return;state.review={...t};$('#tw-review-summary').textContent=t.quantity+' spread'+(t.quantity>1?'s':'')+' · $'+t.limit.toFixed(2)+' debit';$('#tw-review-risk').textContent=money(t.risk);$('#tw-review-state').textContent=state.submitted?'Already submitted in this local preview':'Ready for local paper approval';updateTicket();show('review');}
+        if(action==='approve'){const t=ticket();if(!t.allowed||state.submitted||!state.review)return;if(t.quantity!==state.review.quantity||t.limit!==state.review.limit){say('Ticket changed. Review the updated local proposal first.');return;}state.submitted=true;state.orders.push({id:'P-'+(1001+state.orders.length),quantity:t.quantity,limit:t.limit,risk:t.risk,status:'Working'});renderOrders();updateTicket();$('#tw-review-state').textContent='Working · local paper simulation';say('Created one local paper order. No broker order or live fill exists.');show('orders');}
+        if(action==='inspect-position')$('#tw-position-inspector').hidden=false;
+        if(action==='close-inspector')$('#tw-position-inspector').hidden=true;
+        if(action==='ack'){const label=$('#tw-ack-'+b.dataset.incident);if(label)label.textContent='Acknowledged · action still open';say('Acknowledged locally. The incident remains open until its underlying action is resolved.');}
+        if(action==='validate-draft'){const risk=Number($('#tw-draft-risk').value),hold=Number($('#tw-draft-hold').value);$('#tw-draft-result').textContent=risk>0&&hold>0?'Draft v2 passes local field checks. Research, account capability, and promotion evidence remain required.':'Invalid draft values.';}
+        if(action==='note'){const value=$('#tw-journal-note').value.trim();if(!value){say('Enter a note before appending it.');return;}const p=document.createElement('p');p.className='tw-small';p.textContent='Local review note: '+value;$('#tw-journal-notes').append(p);$('#tw-journal-note').value='';say('Local note appended. Original trade evidence is unchanged.');}
+        if(action==='ask'){const text=$('#tw-question').value.toLowerCase();chat(text.includes('risk')?'risk':text.includes('siz')||text.includes('budget')?'sizing':text.includes('down')||text.includes('outage')?'outage':'custom');}
+      });
+      $('#tw-page-select').addEventListener('change',e=>show(e.target.value));
+      ['#tw-quantity','#tw-limit'].forEach(s=>$(s).addEventListener('input',()=>{state.review=null;state.submitted=false;updateTicket();}));
+      $('#tw-expiry-spot').addEventListener('input',updateTicket);
+      ['#tw-shock','#tw-vol','#tw-days'].forEach(s=>$(s).addEventListener('input',scenario));
+      $('#tw-watch-filter').addEventListener('input',e=>{$$('#tw-watch-rows tr').forEach(tr=>tr.hidden=!tr.dataset.symbol.includes(e.target.value.trim().toUpperCase()));});
+      const events=['Snapshot captured · instrument and quote quality evaluated.','Entry rules evaluated · UNKNOWN values would block entry.','Quantity computed · indivisible risk and costs checked.','Paper order simulated · fill assumptions must be declared.','Outcome reconciled · strategy and journal evidence preserved.'];
+      $('#tw-replay').addEventListener('input',e=>{const i=Number(e.target.value);$('#tw-replay-label').textContent=(i+1)+' / 5';$('#tw-replay-content').textContent=events[i];});
+      if(typeof ResizeObserver!=='undefined'){const ro=new ResizeObserver(()=>{if(state.page==='builder')drawPayoff();if(state.page==='markets')drawMarket();if(state.page==='lab')drawEquity();});ro.observe(root);}
+      updateTicket();scenario();
+    })();
+  </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+{
+  "revision": 1,
+  "created_date": "2026-10-06",
+  "scope": "Design assets and sample-data prototype; no live implementation",
+  "manifest_excludes": "This manifest itself",
+  "files": [
+    {
+      "name": "00_README.md",
+      "bytes": 5374,
+      "sha256": "85ab0ce1cccf2821e2f3a911b4ae5aa2a7ff4cc8ebbcf4eea8eca8c698c2c941"
+    },
+    {
+      "name": "01_Trading_System_Blueprint.md",
+      "bytes": 80119,
+      "sha256": "e34adc0c8d676822d3a4b26481bf74d47fc8dcf65e6c1f7b857b3d62c7527925"
+    },
+    {
+      "name": "02_Screen_and_Interaction_Specifications.md",
+      "bytes": 24086,
+      "sha256": "3e19f9a62118e74aa62c9299a295d6e940a690ac681498c59d1ff26fabc76690"
+    },
+    {
+      "name": "03_API_and_Event_Contracts.md",
+      "bytes": 12584,
+      "sha256": "95ce6b8068139b09d26e0a4ba2f946834f9993523af547c1a320f83204a47b39"
+    },
+    {
+      "name": "04_Trade_Workbench_Screens.html",
+      "bytes": 65539,
+      "sha256": "0b84ab8975f3b948530d496e21b76043a80775a0e75c6731c759302b1703f5fb"
+    },
+    {
+      "name": "05_database.sql",
+      "bytes": 9470,
+      "sha256": "c04f8e8338e822a08a402dd80e402e92c0c23ef52c83596b815f1d5126b8ac31"
+    },
+    {
+      "name": "06_trade_proposal.schema.json",
+      "bytes": 2220,
+      "sha256": "5e25eea1004b3635b2c313475e95802af3cbce41b24822bb2846ffea0d26cb08"
+    },
+    {
+      "name": "07_strategy.example.yaml",
+      "bytes": 1995,
+      "sha256": "bdcc0b5ae6ccf307afda6915f943bbc0fb59739e3a16a847a5e06f19cafb31e7"
+    },
+    {
+      "name": "08_Implementation_Backlog.csv",
+      "bytes": 15259,
+      "sha256": "4874904af18fd973016a889a4a5310cac0cf6cf46b2dbec1664ee07c7bade63e"
+    },
+    {
+      "name": "09_Test_Matrix_and_Release_Gates.md",
+      "bytes": 7782,
+      "sha256": "42b0c45700bf40e4a9bc9932d2bb135b6962134ef1567c8c3c2787b05f56a1d3"
+    },
+    {
+      "name": "10_Source_Register.md",
+      "bytes": 7133,
+      "sha256": "ddc2a5438d760cd8afbdec69a2a6f19245ed04f339b039d46106129e9dbd7072"
+    },
+    {
+      "name": "11_Implementation_Handoff.md",
+      "bytes": 6706,
+      "sha256": "69c5df6bba415e9dd7f924e7a8c578aa6442b1c52ed24956811a045dc916932b"
+    },
+    {
+      "name": "Trading_System_Blueprint.pdf",
+      "bytes": 241899,
+      "sha256": "5e0af494ea178a8d69a0a312e49e4a32a3f622cf2b579c956ac3c4162cb7031d"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+schema_version: 1
+strategy_id: example-trend-debit-spread
+version: 1
+stage: draft
+allowed_modes: [paper, shadow]
+description: Illustrative rules; no claim of edge or live approval.
+universe:
+  instruments: [SPY]
+  definitions: broker_resolved
+  allow_adjusted_contracts: false
+schedule:
+  calendar: instrument_exchange
+  timezone: America/New_York
+  evaluate: once_per_completed_daily_bar
+  entry_window: regular_session
+features:
+  trend_fast: {indicator: sma, bars: 20, price_basis: split_adjusted}
+  trend_slow: {indicator: sma, bars: 100, price_basis: split_adjusted}
+entry:
+  all:
+    - {left: trend_fast, operator: greater_than, right: trend_slow}
+    - {predicate: account_reconciled}
+    - {predicate: no_conflicting_underlying_position}
+    - {predicate: event_calendar_verified}
+  unknown_input_policy: block_entry
+contract_selection:
+  structure: call_debit_vertical
+  dte: {min: 30, max: 60}
+  long_delta_target: 0.50
+  width_usd: 5.00
+  minimum_quote_coverage: all_legs_and_underlying
+  maximum_relative_spread: configured_by_instrument
+sizing:
+  method: deterministic_risk_budget
+  per_trade_budget_usd: 100.00
+  costs_included: true
+  indivisible_contract_over_budget: reject
+execution:
+  order_type: combo_limit
+  time_in_force: day
+  max_reprices: 3
+  minimum_reprice_interval_seconds: 15
+  maximum_work_time_seconds: 120
+  price_corridor: computed_and_authorized_at_preflight
+  uncertain_outcome: preserve_reservation_and_reconcile
+management:
+  trigger_basis: validated_liquidation_estimate
+  profit_target_fraction_of_max_gain: 0.50
+  time_exit_dte: 7
+  expiry_hold_allowed: false
+  overnight_event_policy: explicit_review
+  protective_actions: approved_management_policy_only
+risk:
+  account_policy_reference: configured_version_hash
+  sleeve_budget_usd: 500.00
+  uncovered_options: forbidden
+  minimum_cash_buffer_usd: 3000.00
+promotion:
+  requirements: [historical_evidence, prospective_paper, shadow_parity, recovery_tests]
+  live_activation: separate_user_authorization

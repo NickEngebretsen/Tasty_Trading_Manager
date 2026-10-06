@@ -1,0 +1,117 @@
+stage,task_id,area,task,dependencies,acceptance_evidence
+0,CAP01,Broker,Create versioned capability registry,,Every enabled capability links a schema hash and verification result
+0,CAP02,Broker,Implement environment-bound OAuth token manager,CAP01,Concurrent refresh is single-flight and secrets never appear in logs
+0,CAP03,Broker,Resolve identity and account discovery,CAP02,Only authorized account aliases and capabilities reach the UI
+0,CAP04,Broker,Exercise certification order and stream lifecycle,CAP02,Recorded fixtures distinguish sandbox behavior from performance assumptions
+0,CAP05,Broker,Resolve correlation-field documentation conflict,CAP04,Current request schema and certification round trip establish supported field
+0,CAP06,Broker,Verify per-product complex-order support,CAP04,OTO OCO and OTOCO behavior including partial fills is documented by capability
+0,CAP07,Broker,Verify cancel edit and replace contracts,CAP04,Leg and price restrictions and contingent replacement are tested
+0,CAP08,Broker,Verify exercise and DNE support or manual handoff,CAP03,No unverified endpoint is offered as an automated action
+0,CAP09,Research,Compare LEAN native backtester and narrow replay,CAP04,Decision log explains feature parity costs and remaining gaps
+0,CAP10,Data,Evaluate historical vendor samples and rights,CAP01,Coverage symbol revisions quote quality and permitted storage verified
+0,CAP11,Broker,Record account intraday-margin rule regime,CAP03,Broker-confirmed implementation date and restrictions remain inspectable
+1,DAT01,Data,Build effective-dated instrument master,CAP03,Exact broker and streamer symbols and contract terms round-trip
+1,DAT02,Data,Implement DXLink handshake and token renewal,CAP02;DAT01,Quote events authenticate reconnect and preserve source timestamps
+1,DAT03,Data,Implement subscription manager and priorities,DAT02,Open-position streams survive research subscription pressure
+1,DAT04,Data,Normalize quote validity and age,DAT02,Quiet stale crossed and missing quotes have distinct quality results
+1,DAT05,Data,Ingest account notifications independently,CAP02,Full objects retain raw status and account context
+1,DAT06,Data,Cache holidays sessions and early closes,CAP03,Strategies use the correct calendar and timezone
+1,DAT07,Data,Ingest event calendars and revisions,CAP10,Missing or conflicting dates remain UNKNOWN
+1,DAT08,Data,Create immutable decision snapshots,DAT01;DAT04;DAT06,Each decision references exact hashes ages and input revisions
+2,DAT09,Data,Implement historical subset downloads,CAP10,Cost estimate and license scope precede large data retrieval
+2,DAT10,Data,Store checksummed Parquet manifests,DAT09,Research run can retrieve identical data bytes and revisions
+2,DAT11,Data,Normalize corporate actions and delistings,DAT01;DAT09,Point-in-time universe and adjusted price bases are reproducible
+2,DAT12,Research,Ingest SEC filings and financial units,DAT08,Accession and available-at time survive later restatements
+3,DAT13,Research,Ingest macro observations and vintages,DAT10,Replay cannot read a later revised macro value
+3,DAT14,Research,Add licensed news and evidence indexing,CAP10;DAT08,Only permitted source excerpts and explicit citations enter AI context
+1,ACC01,Portfolio,Create broker snapshot and reconciliation model,DAT05;CAP03,Different endpoint timestamps do not masquerade as one atomic snapshot
+1,ACC02,Portfolio,Implement ledger and fees ingestion,ACC01,Transactions deduplicate and balanced batches preserve corrections
+1,ACC03,Portfolio,Handle manual orders and unassigned holdings,ACC01,External positions immediately consume risk capacity
+1,ACC04,Portfolio,Implement reconnect buffering and resnapshot,DAT05;ACC01,Sequence gaps produce stable reconciliation or explicit uncertainty
+2,ACC05,Portfolio,Implement virtual groups and allocation lots,ACC02;ACC03,Net broker inventory remains distinct from strategy ownership
+2,ACC06,Portfolio,Implement performance with cash flows,ACC02,Deposits are excluded from trading returns and paper/live cohorts separate
+2,ACC07,Portfolio,Track settled funds and account availability,ACC02;DAT06,Cash availability does not derive solely from buying power
+4,ACC08,Portfolio,Model assignment expiration and adjustments,ACC02;DAT01;CAP08,New stock/cash obligations reconcile to broker evidence
+5,ACC09,Portfolio,Add tax review and statement exports,ACC02;ACC05,Lot estimates and wash-sale candidate uncertainty are explicit
+2,QNT01,Quant,Implement decimal tick and quantity rules,DAT01,Incorrect ticks and indivisible quantities fail validation
+2,QNT02,Quant,Implement expiry payoff and spread extrema,QNT01,Known payoff fixtures include fees and exact multipliers
+2,QNT03,Quant,Normalize Greek units and exposure,DAT02;QNT01,Portfolio aggregation refuses unknown units
+2,QNT04,Quant,Implement scenario valuation adapters,QNT02;QNT03,Models rates dividends and vol assumptions are versioned
+2,QNT05,Quant,Compute liquidation estimates and cost ranges,DAT04;QNT02,Midpoint and executable-side estimates stay distinct
+2,QNT06,Quant,Build risk-budget position sizing,QNT02;QNT05,An over-budget indivisible contract returns zero permitted quantity
+3,QNT07,Quant,Implement feature registry and completed-bar indicators,DAT10,Feature availability prevents incomplete-bar lookahead
+5,QNT08,Quant,Add vol term structure and skew,DAT01;DAT04;QNT03,Unknown sparse surface points remain explicit
+6,QNT09,Quant,Add calibrated forecast and probability tools,QNT04;RES06,Risk-neutral metrics are separate from return forecasts
+6,QNT10,Quant,Add historical tail and factor risk,DAT10;ACC06,Sample size horizon dependence and unsupported coverage are visible
+2,RSK01,Risk,Create immutable policy hierarchy,ACC01,Account and global limits override every strategy/manual entry
+2,RSK02,Risk,Implement PASS FAIL UNKNOWN checks,RSK01;DAT08,Each decision includes unit threshold provenance and remedy
+2,RSK03,Risk,Implement atomic portfolio reservations,RSK02;ACC03,Concurrent candidates cannot double spend capital or risk
+2,RSK04,Risk,Include active orders and ambiguous exposure,RSK03,UNKNOWN reservations never expire by TTL alone
+2,RSK05,Risk,Validate before and after portfolio scenarios,QNT04;RSK02,Protective-leg removal can be identified as risk increasing
+2,RSK06,Risk,Implement liquidity and quote quality gates,DAT04;QNT05,Unavailable or suspect quotes block default entries
+3,RSK07,Risk,Implement underlying factor and event concentration,RSK05;DAT07,Conflicting strategies and pending risk count together
+4,RSK08,Risk,Add assignment funding and expiry action policy,ACC08;DAT06,Verified per-contract deadline and obligations determine action
+4,RSK09,Risk,Implement daily loss and drawdown containment,ACC06;RSK01,Cash-flow-adjusted reference pauses entries without claiming a guaranteed loss cap
+4,RSK10,Risk,Create payload/version-bound authorization,RSK02;CAP03,Changed account policy strategy or payload invalidates authority
+5,RSK11,Risk,Build explicit flatten and hedge plans,RSK05;RSK10,Plan shows sequencing unsupported positions and residual risk
+2,EXE01,Execution,Create immutable intent and command journal,DAT08;RSK02,Intent hash and correlation persist before network routing
+2,EXE02,Execution,Implement application idempotency contracts,EXE01,Matching key returns prior command and changed payload conflicts
+2,EXE03,Execution,Implement broker dry-run and warning handling,CAP04;EXE01,Raw preflight fees buying-power impact and warnings retained
+4,EXE04,Execution,Create controlled single account broker gateway,CAP05;RSK03;RSK10;EXE03,Only gateway identity can access write credentials
+4,EXE05,Execution,Implement writer lease and safe handover,EXE04,Old in-flight commands are reconciled before new writer routing
+4,EXE06,Execution,Implement submit acknowledgment and UNKNOWN path,EXE04;RSK04,Timeout preserves reserve and blocks equivalent resubmission
+4,EXE07,Execution,Recover unknown orders with pagination and visibility window,EXE06;ACC01,One empty broker read cannot establish failed submission
+4,EXE08,Execution,Assemble and deduplicate per-leg fills,DAT05;EXE06,Terminal status does not invent missing executions
+4,EXE09,Execution,Implement cancel-fill race handling,CAP07;EXE08,Actual exposure remains correct regardless of acknowledgment order
+4,EXE10,Execution,Implement bounded combo repricing,CAP07;EXE09,Quantity and approved price corridor remain unchanged
+4,EXE11,Execution,Implement complex-order lifecycle adapter,CAP06;EXE08,Bracket manager tracks verified protection and contingent state
+4,EXE12,Execution,Activate managers for actual partial exposure,EXE08;RSK05,Residual fills have an explicit owner and recovery policy
+4,EXE13,Execution,Implement closing and linked roll intents,EXE10;ACC05,Old realized P/L and new risks are retained separately
+5,EXE14,Execution,Implement bounded strategy dispatch,RSK10;EXE12,Every order fits exact approved version account and limits
+4,EXE15,Execution,Add transaction-cost analysis,EXE08;QNT05,Arrival quote decision price and all fees are inspectable
+3,STR01,Automation,Define typed strategy AST and feature dependencies,QNT07;RSK02,Invalid units missing features and unsupported predicates are rejected
+3,STR02,Automation,Build one evaluator for all modes,STR01,Replay paper shadow and live consume the same decision artifact
+3,STR03,Automation,Create lifecycle/version registry,STR01,Promoted artifacts are immutable and edits create drafts
+3,STR04,Automation,Build deterministic contract selector,DAT01;QNT06;STR02,Expiry delta width and liquidity choices are reproducible
+3,STR05,Automation,Implement schedule and conflict policies,DAT06;ACC05;STR02,Daylight saving holidays and position ownership are correct
+3,STR06,Automation,Implement capital sleeves and global allocation,RSK03;STR03,Virtual budgets do not imply broker-account isolation
+3,STR07,Automation,Build stock baseline strategy,STR02;RES01,Completed-bar logic and cost assumptions replay deterministically
+3,STR08,Automation,Build defined-risk option example strategy,STR04;RES02,Invalid event coverage or over-budget contract blocks entry
+5,STR09,Automation,Implement pause/manage-only/retirement,EXE12;STR03,Entry pause does not abandon open positions or protection
+5,STR10,Automation,Implement evidence-based promotion workflow,RES06;STR03;RSK10,Operational evidence and strategy-edge evidence remain separate
+2,RES01,Research,Implement realistic stock paper engine,QNT05;ACC02,Paper ledger includes costs and separate simulated identity
+3,RES02,Research,Implement conservative option/combo paper fills,DAT09;QNT05;RES01,Quote touch midpoint and independent legs do not imply guaranteed fills
+3,RES03,Research,Integrate selected historical engine adapter,CAP09;DAT10;STR02,Native results assumptions and schema retained alongside normalized output
+3,RES04,Research,Build reproducibility manifests and replay,RES03;DAT08,Trade inspection restores exact then-available inputs
+3,RES05,Research,Add walk-forward holdout and cost sensitivity,RES03,All tested parameter families and withheld results are recorded
+3,RES06,Research,Create strategy-specific promotion evidence,RES02;RES04;RES05,No small attractive curve automatically arms live trading
+5,RES07,Research,Measure live-paper divergence and drift,EXE15;RES06,Timing fills features costs and model versions compared
+3,AII01,AI,Define account-scoped read and draft tools,ACC01;QNT04,Tools never expose arbitrary broker mutation or credential access
+3,AII02,AI,Create evidence context packs and source rules,DAT14;AII01,Price/risk facts resolve to trusted tool outputs
+3,AII03,AI,Implement strict proposal and refusal handling,AII02,Valid schema still undergoes semantic and evidence validation
+3,AII04,AI,Build grounded research and portfolio assistant,AII03,Missing facts cause abstention and drafts remain reviewable objects
+3,AII05,AI,Add cost latency and model-version budgets,AII04,No per-tick model calls and deterministic manager survives AI cap/outage
+3,AII06,AI,Create injection hallucination and unauthorized-action evals,AII03,Adversarial evidence cannot change account authority
+5,AII07,AI,Evaluate prospective AI-dependent strategy selection,AII06;RES06,Historical training-data hindsight risk remains documented
+6,AII08,AI,Add model/prompt shadow upgrades,AII05;AII07,New model cannot inherit live approval without evaluation
+1,UIF01,UI,Build account/mode shell and navigation,CAP03,Environment is always visible and context switches invalidate tickets
+1,UIF02,UI,Build Overview Portfolio and Operations,UIF01;ACC01,Unassigned holdings incidents and data age have clear drill-down
+2,UIF03,UI,Build markets watchlists and linked charts,UIF01;DAT04,Symbol selection synchronizes panes without using chart cursor as quote
+2,UIF04,UI,Build option chain and contract inspector,UIF01;DAT01;DAT04,Exact symbols terms and age survive selection
+2,UIF05,UI,Build trade composer payoff and portfolio impact,UIF04;QNT02;RSK05,Quantity debit/credit costs and risk update coherently
+4,UIF06,UI,Build immutable review and order inspector,UIF05;EXE06,Approval state is distinct from fill and UNKNOWN has no blind retry
+3,UIF07,UI,Build visual rule editor and version diff,STR03;UIF01,Editor generates the same typed AST as code view
+3,UIF08,UI,Build experiment report and event replay,RES04;UIF01,Synthetic historical paper and live evidence are distinguished
+3,UIF09,UI,Build Risk Lab scenarios and limits,RSK05;UIF01,Units assumptions coverage and contributors remain inspectable
+3,UIF10,UI,Build automatic journal and note history,ACC05;ACC06,User edits cannot rewrite executed payload or original thesis
+3,UIF11,UI,Build assistant draft-object interface,AII04;UIF01,Action chips open reviewed objects rather than executing prose
+4,UIF12,UI,Verify mobile keyboard themes and zoom,UIF06;UIF09,320px and 200 percent zoom retain environment risk and actions
+1,OPS01,Operations,Create isolated secrets and worker roles,CAP02,Research/browser identities cannot obtain broker write keys
+1,OPS02,Operations,Add structured metrics traces and independent heartbeat,OPS01,Missing process alerts do not depend on its own green dashboard
+1,OPS03,Operations,Build durable inbox and notification outbox,ACC01,Acknowledged unresolved and delivered states remain different
+3,OPS04,Operations,Implement opted-in channels and escalation,OPS03,Sensitive-field redaction dedupe quiet-hours and failures are tracked
+4,OPS05,Operations,Rehearse submit cancel reconnect and handover faults,EXE09;EXE05,Core fault matrix proves containment and truthful inventory
+4,OPS06,Operations,Implement backup restore and nonrouting recovery,EXE06;ACC02,Restored outbox cannot replay financial commands
+4,OPS07,Operations,Write unknown-order assignment and outage runbooks,OPS05;RSK08,Each incident has containment broker checks and resume criteria
+5,OPS08,Operations,Deploy always-on limited live worker and monitor,OPS06;STR10;EXE14,Explicit small authority and independent recovery channels verified
+6,OPS09,Operations,Review multi-user broker data and tenant dependencies,CAP03;CAP10;OPS01,No personal OAuth grant is treated as a public-service integration

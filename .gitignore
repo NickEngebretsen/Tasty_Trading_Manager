@@ -1,0 +1,48 @@
+# Local credentials and environment settings
+.env
+.env.*
+!.env.example
+!.env.sample
+.envrc
+secrets/
+local-secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+.tokens.json
+token-cache.json
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# JavaScript dependencies and generated output
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# Local runtime data
+*.log
+logs/
+*.sqlite
+*.sqlite3
+*.db
+.cache/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

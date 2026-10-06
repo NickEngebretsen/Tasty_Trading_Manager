@@ -1,0 +1,4 @@
+# Preserve the imported pack's checksum-verified bytes on every platform.
+docs/design-pack/** -text
+*.pdf binary
+docs/design-pack/*.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

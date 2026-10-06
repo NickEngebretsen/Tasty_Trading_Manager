@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "action": {"type": "string", "enum": ["open", "close", "adjust", "no_trade"]},
+    "account_context_id": {"type": "string"},
+    "environment": {"type": "string", "enum": ["readonly", "sandbox", "paper", "shadow", "live"]},
+    "strategy_version_id": {"type": ["string", "null"]},
+    "market_snapshot_id": {"type": "string"},
+    "thesis": {"type": "string"},
+    "alternative_explanation": {"type": "string"},
+    "invalidation": {"type": "string"},
+    "time_horizon_days": {"type": ["integer", "null"]},
+    "legs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "instrument_id": {"type": "string"},
+          "action": {"type": "string", "enum": ["buy_to_open", "sell_to_open", "buy_to_close", "sell_to_close"]},
+          "ratio": {"type": "integer"}
+        },
+        "required": ["instrument_id", "action", "ratio"]
+      }
+    },
+    "entry_preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "price_effect": {"type": ["string", "null"], "enum": ["debit", "credit", null]},
+        "limit_floor": {"type": ["string", "null"]},
+        "limit_ceiling": {"type": ["string", "null"]},
+        "preferred_execution_policy_id": {"type": ["string", "null"]}
+      },
+      "required": ["price_effect", "limit_floor", "limit_ceiling", "preferred_execution_policy_id"]
+    },
+    "management_policy_id": {"type": ["string", "null"]},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}},
+    "event_exclusions": {"type": "array", "items": {"type": "string"}},
+    "missing_inputs": {"type": "array", "items": {"type": "string"}},
+    "abstention_reason": {"type": ["string", "null"]},
+    "uncertainty_description": {"type": "string"}
+  },
+  "required": ["action", "account_context_id", "environment", "strategy_version_id", "market_snapshot_id", "thesis", "alternative_explanation", "invalidation", "time_horizon_days", "legs", "entry_preferences", "management_policy_id", "evidence_ids", "event_exclusions", "missing_inputs", "abstention_reason", "uncertainty_description"]
+}
